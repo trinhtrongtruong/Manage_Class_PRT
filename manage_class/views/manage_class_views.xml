@@ -1,0 +1,123 @@
+<odoo>
+    <!-- Menu chính -->
+    <menuitem id="menu_manager_class"
+              name="Quản lý lớp học"
+              sequence="8"/>
+
+    <!-- Auto stt-->
+    <record id="sequence_list_class_stt" model="ir.sequence">
+        <field name="name">Class STT Sequence</field>
+        <field name="code">list.class.stt</field>
+        <field name="prefix">0</field>
+        <field eval="1" name="number_next"/>
+        <field eval="1" name="number_increment"/>
+    </record>
+
+    <!-- Định nghĩa Tree View cho list.class -->
+    <record id="view_manage_class_tree" model="ir.ui.view">
+        <field name="name">list.class.tree</field>
+        <field name="model">list.class</field>
+        <field name="arch" type="xml">
+            <tree string="Manage Class">
+                <field name="stt"/>
+                <field name="class_name"/>
+                <field name="teacher_name"/>
+                <field name="class_size"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action và Menu cho list.class -->
+    <record id="action_view_manage_class_tree" model="ir.actions.act_window">
+        <field name="name">Lớp học</field>
+        <field name="res_model">list.class</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_view_manage_class_form" model="ir.ui.view">
+        <field name="name">list.class.form</field>
+        <field name="model">list.class</field>
+        <field name="arch" type="xml">
+            <form string="Thông tin lớp">
+                <sheet>
+                    <group>
+                        <field name="class_name"/>
+                        <field name="teacher_name" options="{'no_create': True}" context="{'show_address': True}"/>
+                        <field name="class_size"/>
+                        <field name="address"/>
+                        <field name="status" widget="radio" options="{'horizontal': true}"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+
+    <menuitem id="menu_class"
+              name="Lớp học"
+              action="action_view_manage_class_tree"
+              parent="menu_manager_class"
+              sequence="3"/>
+
+    <!-- Auto stt-->
+    <record id="sequence_infor_manage_class_stt" model="ir.sequence">
+        <field name="name">Infor Manage Class STT Sequence</field>
+        <field name="code">infor.class.stt</field>
+        <field name="prefix">0</field>
+        <field eval="1" name="number_next"/>
+        <field eval="1" name="number_increment"/>
+    </record>
+
+    <!-- Định nghĩa Tree View cho infor.class -->
+    <record id="view_infor_manage_class_tree" model="ir.ui.view">
+        <field name="name">infor.class.tree</field>
+        <field name="model">infor.class</field>
+        <field name="arch" type="xml">
+            <tree string="Manage Class">
+                <field name="stt"/>
+                <field name="student_name"/>
+                <field name="date"/>
+                <field name="male"/>
+                <field name="address"/>
+                <field name="role"/>
+                <field name="status"/>
+                <field name="note"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_infor_class_form" model="ir.ui.view">
+        <field name="name">infor.class.form</field>
+        <field name="model">infor.class</field>
+        <field name="arch" type="xml">
+            <form string="Thông tin học sinh">
+                <sheet>
+                    <group>
+                        <field name="stt" readonly="1"/>
+                        <field name="student_name" options="{'no_create': True}" context="{'show_address': True}"/>
+                        <field name="date"/>
+                        <field name="male"/>
+                        <field name="address"/>
+                        <field name="role"/>
+                        <field name="status"/>
+                        <field name="note"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action và Menu cho infor.class -->
+    <record id="action_view_infor_manage_class_tree" model="ir.actions.act_window">
+        <field name="name">Thông tin học sinh</field>
+        <field name="res_model">infor.class</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_infor"
+              name="Thông tin"
+              action="action_view_infor_manage_class_tree"
+              parent="menu_manager_class"
+              sequence="4"/>
+</odoo>
